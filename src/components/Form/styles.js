@@ -1,18 +1,31 @@
 import styled from "styled-components/native";
 
-export const View = styled.View`
-    position: absolute;
-    padding-bottom:50px;
+export const View = styled.KeyboardAvoidingView`
+    position: relative;
     top: 10px;
     left: 30px;
-    
-`;
-export const Title = styled.Text`
-  font-size:25px;
+
 `;
 
-export const ViewButton = styled.View`
+export const ViewForm = styled.View`
   position:relative;
-  bottom:15px;
+  margin-bottom:80px
+
+
+`;
+
+
+export const Imagem = styled.Image`
+  height:20px;
+  width:20px;
+
+  
+`;
+export const ViewButton = styled.View`
+  position:absolute;
+  bottom:85px;
+
+
+
 `;
 

@@ -36,15 +36,12 @@ export default function List({ navigation }) {
         data={projetos}
         renderItem={(projeto) =>
           <Project
+            key={projeto.item.id}
             onPress={() => navigation.navigate("Detalhes", {
               id: projeto.item.id
             })}
           ><NameProject>{projeto.item.name}</NameProject></Project>
         }
-        keyExtractor={(projeto) => {
-          projeto.id;
-        }}
-
 
         refreshControl={<RefreshControl refreshing={false} onRefresh={projeto} />}
 

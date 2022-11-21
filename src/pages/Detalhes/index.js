@@ -7,26 +7,26 @@ import {
   Titulo,
   Container,
   Text,
-  Title,
-  ViewButton
+  ViewButton,
+  Imagem
 } from "./styles"
 
-export default function Detalhes({ navigation ,route}) {
-  const [projetos , setProjetos] = useState([])
+export default function Detalhes({ navigation, route }) {
+  const [projetos, setProjetos] = useState([])
 
-  const projeto = async () =>{
+  const projeto = async () => {
     const response = await api.get(`/Projects/${route.params.id}`)
     await setProjetos(response.data)
   }
 
-  const deleteProjeto = async () =>{
+  const deleteProjeto = async () => {
     const response = await api.delete(`/Projects/${route.params.id}`)
-    navigation.navigate("List")
+    navigation.navigate("Projetos")
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     projeto()
-  },[])
+  }, [])
 
   projeto()
 
@@ -58,15 +58,19 @@ export default function Detalhes({ navigation ,route}) {
       </Container>
 
       <ViewButton>
-          <Button left={"10px"} onPress={()=>{
-              deleteProjeto()
-            }}><Title>🗑</Title></Button>
-          <Button background={"#91e489"}  onPress={()=>{
-              navigation.navigate("Editar",{
-                id: projetos.id
-              })
-            }}><Title>✎</Title></Button>
-        </ViewButton>
+        <Button left={"10px"} onPress={() => {
+          deleteProjeto()
+        }}>
+          <Imagem source={require('../../img/delete.png')}/>
+          </Button>
+
+        <Button background={"#91e489"} onPress={() => {
+          navigation.navigate("Editar", {
+            id: projetos.id
+          })
+        }}>
+          <Imagem source={require('../../img/pencil.png')}/></Button>
+      </ViewButton>
 
     </View>
   );

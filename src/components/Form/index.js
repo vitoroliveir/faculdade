@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import Input from "../Input"
-import { ScrollView, KeyboardAvoidingView } from 'react-native';
+import { ScrollView } from 'react-native';
 import { api } from "../../services/api";
 import {
   View,
   Title,
-  ViewButton
+  ViewButton,
+  ViewForm,
+  Imagem
 } from "./styles"
 import Button from '../Button';
 
@@ -22,7 +24,7 @@ export default function Form({ navigation, Content, id, type }) {
       description: description == "" ? Content.description : description,
       name: name == "" ? Content.name : name,
       value: value == "" ? Content.value : value,
-      actions: actions == "" ? Content.actions : value,
+      actions: actions == "" ? Content.actions : actions,
       reference: reference == "" ? Content.reference : reference
 
     }).then(() => {
@@ -44,19 +46,20 @@ export default function Form({ navigation, Content, id, type }) {
       reference: reference
     }).then(() => {
       console.log("criado com sucesso")
-      navigation.navigate("List")
+      navigation.navigate("Projetos")
 
     })
   }
 
   return (
-    <View >
-      <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"}>
-        <ScrollView >
+    <View behavior={Platform.OS == "ios" ? "padding" : "height"} keyboardVerticalOffset={-10}>
+
+      <ScrollView>
+        <ViewForm>
           <Input
             onChangeText={(value) => setName(value)}
             name={"name"}
-            label={"Nome"}
+            label={"Nome:"}
             placeholder={"Nome do Projeto"}
             Content={Content ? Content.name : ""}
           ></Input>
@@ -65,7 +68,7 @@ export default function Form({ navigation, Content, id, type }) {
             onChangeText={(value) => setDescription(value)}
             name={"Descricao"}
             multiline={true}
-            label={"Descrição"}
+            label={"Descrição:"}
             placeholder={"Descrição"}
             height={"80px"}
             Content={Content ? Content.description : ""}
@@ -75,7 +78,7 @@ export default function Form({ navigation, Content, id, type }) {
             onChangeText={(value) => setValue(value)}
             type={"numeric"}
             name={"Valor"}
-            label={"Valor"}
+            label={"Valor:"}
             placeholder={"Valor"}
             Content={Content ? Content.value : ""}
           ></Input>
@@ -84,7 +87,7 @@ export default function Form({ navigation, Content, id, type }) {
             onChangeText={(value) => setActions(value)}
             name={"acoes"}
             multiline={true}
-            label={"Ações"}
+            label={"Ações:"}
             placeholder={"Ações"}
             height={"150px"}
             Content={Content ? Content.actions : ""}
@@ -94,35 +97,38 @@ export default function Form({ navigation, Content, id, type }) {
             onChangeText={(value) => setReference(value)}
             name={"referencia"}
             multiline={true}
-            label={"referencia"}
-            placeholder={"referencia"}
+            label={"Referencia:"}
+            placeholder={"Referencia"}
             height={"100px"}
             Content={Content ? Content.reference : ""}
           ></Input>
-        </ScrollView>
-      </KeyboardAvoidingView>
+        </ViewForm>
+        {type == "Modification" ? (
+          <ViewButton>
+            <Button background={"#91e489"} onPress={() => {
+              editarProjeto()
+            }}>
+              <Imagem source={require('../../img/check.png')}/>
+            </Button>
+          </ViewButton>
+        ) : (
+          <ViewButton>
+            <Button onPress={() => {
+              navigation.navigate("Projetos")
+            }}><Imagem source={require('../../img/x.png')}/></Button>
+            <Button background={"#91e489"} left={"10px"} onPress={() => {
+              criarProjeto()
+            }}>
+              <Imagem source={require('../../img/check.png')}/>
+            </Button>
+          </ViewButton>
+        )
+        }
 
 
-      {type == "Modification" ? (
-        <ViewButton>
-          <Button background={"#91e489"} onPress={() => {
-            editarProjeto()
-          }}><Title>✓</Title></Button>
-        </ViewButton>
-      ) : (
-        <ViewButton>
-          <Button onPress={() => {
-            navigation.navigate("List")
-          }}><Title>x</Title></Button>
-          <Button background={"#91e489"} left={"10px"} onPress={() => {
-            criarProjeto()
-          }}><Title>✓</Title></Button>
-        </ViewButton>
-      )
-      }
-
-
+      </ScrollView>
 
     </View>
+
   );
 }

@@ -32,7 +32,6 @@ export const Project = styled.TouchableOpacity`
 `;
 
 export const NameProject = styled.Text`
-    font-family: Roboto_700Bold;
     font-size: 32px;
     color: #FFFFFF;
     

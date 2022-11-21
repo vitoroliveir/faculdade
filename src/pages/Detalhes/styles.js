@@ -20,13 +20,15 @@ export const Container = styled.View`
     left:10px;
 `;
 
-export const Title = styled.Text`
-  font-size:25px;
-`;
+export const Imagem = styled.Image`
+  height:30px;
+  width:30px;
 
+  
+`;
 export const ViewButton = styled.View`
   position:absolute;
   bottom:15px;
   top:500px;
-  left:15px;
+  left:30px;
 `;

@@ -6,48 +6,44 @@ import Registration from "./src/pages/Registration";
 import Modification from "./src/pages/Modification";
 import Detalhes from "./src/pages/Detalhes";
 
-
 const Stack = createStackNavigator();
 
-import{
-  useFonts,
-  Inter_700Bold,
-  Roboto_700Bold,
-  Inter_500Medium,
-  Inter_400Regular,
-} from "@expo-google-fonts/dev"
-
-import AppLoading from 'expo-app-loading';
-
 export default function App() {
-  const [ fontsLoaded ] = useFonts({
-    Inter_700Bold,
-    Roboto_700Bold,
-    Inter_500Medium,
-    Inter_400Regular,
-  })
 
-  if(!fontsLoaded){
-    <AppLoading></AppLoading>
-  }
   return (
    <NavigationContainer>
-      <Stack.Navigator initialRouteName='List'>
+      <Stack.Navigator initialRouteName='Projetos'>
         <Stack.Screen
-          name="List"
+          name="Projetos"
           component={List}
+          options={{
+            headerTintColor: "#FF4444",
+            headerTitleAlign: 'center'
+          }}
         />
         <Stack.Screen
           name="Cadastro"
           component={Registration}
+          options={{
+            headerTintColor: "#FF4444",
+            headerTitleAlign: 'center'
+          }}
         />
         <Stack.Screen
           name="Editar"
           component={Modification}
+          options={{
+            headerTintColor: "#FF4444",
+            headerTitleAlign: 'center'
+          }}
         />
         <Stack.Screen
           name="Detalhes"
           component={Detalhes}
+          options={{
+            headerTintColor: "#FF4444",
+            headerTitleAlign: 'center'
+          }}
         />
           
       </Stack.Navigator>

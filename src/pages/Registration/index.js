@@ -7,7 +7,7 @@ import Form from '../../components/Form';
 export default function Registration({ navigation }) {
   return (
     <View >
-      <Form navigation={navigation} type={"registration"}/>
+      <Form navigation={navigation} type={"registration"} />
     </View>
   );
 }

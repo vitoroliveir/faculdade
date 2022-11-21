@@ -7,5 +7,5 @@ export const Title = styled.Text`
 export const ViewButton = styled.View`
   position:absolute;
   top:700px;
-  left:35px;
+  left:45px;
 `;

@@ -16,13 +16,11 @@ export const InputText =  styled.TextInput`
     padding-bottom: 15px;
     margin-top: 8px;
     
-    font-family: Inter_400Regular;
     font-size: 16px;
 
 `;
 
 export const TextLabel =  styled.Text`
-    font-family: Inter_500Medium;
     font-size: 14px;
 
 `;

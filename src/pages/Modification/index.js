@@ -6,23 +6,23 @@ import { View } from 'react-native';
 import Form from '../../components/Form';
 
 
-export default function Modification({ navigation , route }) {
-  const [projetos , setProjetos] = useState(projetos)
+export default function Modification({ navigation, route }) {
+  const [projetos, setProjetos] = useState(projetos)
 
-  const projeto = async () =>{
+  const projeto = async () => {
     const response = await api.get(`/Projects/${route.params.id}`)
     await setProjetos(response.data)
 
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     projeto()
-  },[])
+  }, [])
 
   console.log(route.params.id)
   return (
-    <View >
-      <Form navigation={navigation} Content={projetos} id={route.params.id} type={"Modification"}/>
+    <View style={{height: "200%"}}>
+      <Form navigation={navigation} Content={projetos} id={route.params.id} type={"Modification"} />
     </View>
   );
 }

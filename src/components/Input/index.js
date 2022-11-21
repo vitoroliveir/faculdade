@@ -1,12 +1,12 @@
-import React, {  useState } from "react";
-import { 
+import React, { useState } from "react";
+import {
     Container,
     InputText,
     TextLabel
 } from './styles'
 
-const Input = ({type,value,onChangeText, multiline ,label,placeholder, height, width, Content}) => {
-    
+const Input = ({ type, value, onChangeText, multiline, label, placeholder, height, width, Content }) => {
+
     return (
         <Container>
             <TextLabel>{label}</TextLabel>

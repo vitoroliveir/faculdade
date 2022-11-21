@@ -7,24 +7,26 @@ import { api } from "../../services/api";
 import {
   View,
   LitsProjects,
-  Project, 
+  Project,
   NameProject,
 } from "./styles"
 
 
 export default function List({ navigation }) {
-  const [projetos , setProjetos] = useState(projetos)
+  const [projetos, setProjetos] = useState(projetos)
 
-  const projeto = async () =>{
+  const projeto = async () => {
     const response = await api.get('/Projects')
     await setProjetos(response.data)
 
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     projeto()
-    
-  },[])
+
+  }, [])
+
+  projeto()
 
   return (
     <View>
@@ -32,24 +34,25 @@ export default function List({ navigation }) {
       <LitsProjects
         showsVerticalScrollIndicator={false}
         data={projetos}
-        renderItem={( projeto ) =>
-            <Project
-              onPress={() => navigation.navigate("Editar",{
-                id: projeto.item.id
-              }) }
-            ><NameProject>{projeto.item.name}</NameProject></Project>
+        renderItem={(projeto) =>
+          <Project
+            onPress={() => navigation.navigate("Detalhes", {
+              id: projeto.item.id
+            })}
+          ><NameProject>{projeto.item.name}</NameProject></Project>
         }
         keyExtractor={(projeto) => {
           projeto.id;
         }}
 
-        refreshControl={<RefreshControl refreshing={false} onRefresh={projeto}/>}
-        
+
+        refreshControl={<RefreshControl refreshing={false} onRefresh={projeto} />}
+
       >
       </LitsProjects>
-      <Button onPress={()=>{
-          navigation.navigate("Cadastro")
-        }}><NameProject>+</NameProject></Button>
+      <Button onPress={() => {
+        navigation.navigate("Cadastro")
+      }}><NameProject>+</NameProject></Button>
     </View>
   );
 }

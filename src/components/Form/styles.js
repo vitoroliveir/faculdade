@@ -3,7 +3,6 @@ import styled from "styled-components/native";
 export const View = styled.View`
     position: absolute;
     padding-bottom:50px;
-    
     top: 10px;
     left: 30px;
     
